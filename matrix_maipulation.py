@@ -192,8 +192,8 @@ class IO_Panel(gooey.Tk):
 		help_title.grid(sticky='w',columnspan=2,column=0,row=1)
 
 		helpstring = '''Welcome to Matrix Manipulation. This tool is intended to help visualise and understand matrix transformations in 2 dimensions. 
-				Left click the display to add a point, or right click one to delete it.
-				You can use the sliders to change values such as scale or rotation and view their effects on the points you have placed as well as see the matrix used for the transformation.'''
+						Left click the display to add a point, or right click one to delete it.
+						You can use the sliders to change values such as scale or rotation and view their effects on the points you have placed as well as see the matrix used for the transformation.'''
 
 		text = gooey.Message(box,text=helpstring,font=self.verdana_sml,width=x_res/2)
 		text.grid(column=1,row=2,sticky='w')
@@ -238,7 +238,7 @@ class IO_Panel(gooey.Tk):
 		scale =  round(self.scale_scale.get(),3)	
 
 		trans = [round(self.transx_scale.get(),3),
-			 round(self.transy_scale.get(),3)]
+				 round(self.transy_scale.get(),3)]
 
 		self.rotation_label.config(text=theta)
 
@@ -270,10 +270,10 @@ class Engine(object):
 		pygame.display.set_icon(icon)
 
 		# matrix of the triangle which is going to be transformed
-		self.tri   = numpy.matrix( [[ x_res/4, x_res/3, x_res/5],
-					    [ y_res/3, y_res/5, y_res/4]] )
+		self.tri       = numpy.matrix( [[ x_res/4, x_res/3, x_res/5],
+									    [ y_res/3, y_res/5, y_res/4]] )
 
-		self.panel = IO_Panel(self)
+		self.panel 	   = IO_Panel(self)
 
 		self.mainloop()
 
@@ -286,11 +286,11 @@ class Engine(object):
 
 		# this matrix handles rotation through angle theta
 		rotation  = numpy.matrix( [[  cos(theta), sin(theta)],
-			    		   [ -sin(theta), cos(theta)]] )
+			    			  	   [ -sin(theta), cos(theta)]] )
 
 		# this matrix scales points from the origin
 		scaling   = numpy.matrix( [[scale,0.0],
-					   [0.0,scale]])
+								   [0.0,scale]])
 
 		self.panel.update_matrix(scaling * rotation,trans)
 
@@ -340,15 +340,15 @@ class Engine(object):
 		pygame.draw.line(self.surface,black, (0,y_res/2), (x_res,y_res/2) ,SP/9) # draw x axis
 
 		tri0  = numpy.matrix([[1,0],
-				      [0,-1]]) * self.tri # flip y cordinate to display correctly - positive y is downward on screen
+							  [0,-1]]) * self.tri # flip y cordinate to display correctly - positive y is downward on screen
 
 		tri1  = self.get_matrix(theta,scale,trans) * tri0 # transform tri0 by transformation matrix
 
 		tri1 += numpy.matrix([[trans[0]],
-				      [trans[1]]]) # translate by translation amount
+							  [trans[1]]]) # translate by translation amount
 
 		centr = numpy.matrix([[x_res/2],
-				      [y_res/2]]) # centralization matrix to bring points to middle of screen
+							  [y_res/2]]) # centralization matrix to bring points to middle of screen
 
 		tri0 += centr # centralise both triangle matrices
 		tri1 += centr # centralise both triangle matrices
@@ -361,7 +361,7 @@ class Engine(object):
 	def reset(self):
 
 		self.tri = numpy.matrix( [[ x_res/4, x_res/3, x_res/5],
-					  [ y_res/3, y_res/5, y_res/4]] )
+								  [ y_res/3, y_res/5, y_res/4]] )
 
 	def mainloop(self):
 
