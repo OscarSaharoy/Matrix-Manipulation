@@ -8,4 +8,4 @@ You can use the sliders to change values such as scale or rotation and view thei
 
 Please tell me about any bugs or incompatibilities, and remember that the script requires python 2.7, gooey (my own adaptation of Tkinter which is included in the folder), and the favicons which are also in the file.
 
-https://github.com/OscarSaharoy/Matrix-Manipulation/blob/master/Example.gif
+![Alt text](https://github.com/OscarSaharoy/Matrix-Manipulation/blob/master/Example.gif)
