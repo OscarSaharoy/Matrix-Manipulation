@@ -45,7 +45,7 @@ class IO_Panel(gooey.Tk):
 
 		self.wm_title(' Matrix Manipulation')
 
-		icon = Tkinter.PhotoImage(file='matrix.gif') # setting favicon
+		icon = Tkinter.PhotoImage(file=r'assets/matrix.gif') # setting favicon
 		self.tk.call('wm', 'iconphoto', self._w, icon)  
 
 		self.closed = False
@@ -185,7 +185,7 @@ class IO_Panel(gooey.Tk):
 		
 		box = gooey.Toplevel(self,padx=SP,pady=SP)
 
-		icon = Tkinter.PhotoImage(file='matrix.gif') # setting favicon
+		icon = Tkinter.PhotoImage(file=r'assets/matrix.gif') # setting favicon
 		self.tk.call('wm', 'iconphoto', box._w, icon)  
 
 		help_title = gooey.Label(box,font=self.arial_big,text='Help')
@@ -266,7 +266,7 @@ class Engine(object):
 		pygame.display.set_caption(' Matrix Manipulation')
 
 		# setting favicon
-		icon = pygame.image.load('matrix.png')
+		icon = pygame.image.load(r'assets/matrix.png')
 		pygame.display.set_icon(icon)
 
 		# matrix of the triangle which is going to be transformed
