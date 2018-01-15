@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 # Oscar Saharoy 2017
 
-import sys,pygame,math,numpy,gooey,tkFont,Tkinter
+import sys,pygame,math,numpy,gooey,tkinter
+from tkinter.font import Font
 
 # Config
 
@@ -9,11 +10,11 @@ pygame.init()
 
 info = pygame.display.Info()
 
-x_res = info.current_h/2 # Width of display
-y_res = info.current_h/2 # Height of display
+x_res = info.current_h // 2   # Width of display
+y_res = info.current_h // 2   # Height of display
 
-p_res = info.current_h/3 # height of settings panel
-SP    = p_res * 0.06 # measurement unit
+p_res = info.current_h // 3   # height of settings panel
+SP    = info.current_h // 50 # measurement unit
 
 frmrt = 16   # delay between frames in ms
 
@@ -45,7 +46,7 @@ class IO_Panel(gooey.Tk):
 
 		self.wm_title(' Matrix Manipulation')
 
-		icon = Tkinter.PhotoImage(file=r'assets/matrix.gif') # setting favicon
+		icon = tkinter.PhotoImage(file=r'assets/matrix.gif') # setting favicon
 		self.tk.call('wm', 'iconphoto', self._w, icon)  
 
 		self.closed = False
@@ -53,12 +54,12 @@ class IO_Panel(gooey.Tk):
 
 		# Creating fonts
 
-		arial_big   = tkFont.Font(family="Arial",   size=int(F*3.5), weight=tkFont.BOLD)
-		arial_med   = tkFont.Font(family="Arial",   size=int(F*2),   weight=tkFont.BOLD)
+		arial_big   = Font(family="Arial",   size=int(F*3.5), weight='bold')
+		arial_med   = Font(family="Arial",   size=int(F*2),   weight='bold')
 
-		verdana_big = tkFont.Font(family="Verdana", size=int(F*6))
-		verdana_med = tkFont.Font(family="Verdana", size=int(F*2),   weight=tkFont.BOLD)
-		verdana_sml = tkFont.Font(family="Verdana", size=int(F*1.4), weight=tkFont.BOLD)
+		verdana_big = Font(family="Verdana", size=int(F*6))
+		verdana_med = Font(family="Verdana", size=int(F*2),   weight='bold')
+		verdana_sml = Font(family="Verdana", size=int(F*1.4), weight='bold')
 
 		self.title1 = gooey.Label(self,text='Settings',font=arial_big)
 		self.title1.grid(sticky='w',columnspan=2)
@@ -171,7 +172,7 @@ class IO_Panel(gooey.Tk):
 		self.help_button = gooey.Button(self,text='?',font=arial_med,fg='grey34',command=self.help)
 		self.help_button.grid(column=4,row=0,sticky='nsew')
 
-		self.F  = F
+		self.F = F
 		self.arial_big = arial_big
 		self.verdana_med = verdana_med
 		self.verdana_sml = verdana_sml
@@ -336,8 +337,8 @@ class Engine(object):
 
 		theta, scale, trans = self.panel.get_values()
 
-		pygame.draw.line(self.surface,black, (x_res/2,0), (x_res/2,y_res) ,SP/9) # draw y axis
-		pygame.draw.line(self.surface,black, (0,y_res/2), (x_res,y_res/2) ,SP/9) # draw x axis
+		pygame.draw.line(self.surface,black, (x_res//2,0), (x_res//2,y_res) ,SP//9) # draw y axis
+		pygame.draw.line(self.surface,black, (0,y_res//2), (x_res,y_res//2) ,SP//9) # draw x axis
 
 		tri0  = numpy.matrix([[1,0],
 							  [0,-1]]) * self.tri # flip y cordinate to display correctly - positive y is downward on screen
@@ -355,8 +356,8 @@ class Engine(object):
 
 		for p in range(self.tri.shape[1]):
 
-			pygame.draw.circle(self.surface, jade, (int(tri1[0,p]), int(tri1[1,p])) ,SP/6) # draw translated points
-			pygame.draw.circle(self.surface, leaf, (int(tri0[0,p]), int(tri0[1,p])) ,SP/6) # draw original points
+			pygame.draw.circle(self.surface, jade, (int(tri1[0,p]), int(tri1[1,p])) ,SP//6) # draw translated points
+			pygame.draw.circle(self.surface, leaf, (int(tri0[0,p]), int(tri0[1,p])) ,SP//6) # draw original points
 
 	def reset(self):
 
