@@ -376,32 +376,29 @@ class CanvasLine(int):
 
 class CanvasRectangle(CanvasLine):
 
-    def __new__(self, parent, *args, **kw):
+    def __new__(cls, parent, *args, **kw):
 
-        self._shape  = parent.create_rectangle(*args,**kw)
-        self._parent = parent
+        num = parent.create_rectangle(*args, **kw)
 
-        return int.__new__(self, self._shape)
+        return int.__new__(cls, num)
 
 
 class CanvasOval(CanvasLine):
 
-    def __new__(self, parent, *args, **kw):
+    def __new__(cls, parent, *args, **kw):
 
-        self._shape  = parent.create_oval(*args,**kw)
-        self._parent = parent
+        num = parent.create_oval(*args, **kw)
 
-        return int.__new__(self, self._shape)
+        return int.__new__(cls, num)
 
 
 class CanvasText(CanvasLine):
 
-    def __new__(self, parent, *args, **kw):
+    def __new__(cls, parent, *args, **kw):
 
-        self._shape  = parent.create_text(*args,**kw)
-        self._parent = parent
+        num = parent.create_text(*args, **kw)
 
-        return int.__new__(self, self._shape)
+        return int.__new__(cls, num)
 
 
 class Canvas(ReConfig,tkinter.Canvas):
