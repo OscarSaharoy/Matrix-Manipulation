@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Oscar Saharoy 2017
 
-import sys,pygame,math,numpy,gooey,tkinter
+import sys,pygame,math,numpy,gooey,tkinter,os
 from tkinter.font import Font
 
 # Config
@@ -45,8 +45,11 @@ class IO_Panel(gooey.Tk):
         self.resizable(0,0) # disable resizing
 
         self.wm_title(' Matrix Manipulation')
+        
+        dirname   = os.path.dirname(__file__) # set current directory
+        icon_path = os.path.join(dirname, r'assets/matrix.gif')
 
-        icon = tkinter.PhotoImage(file=r'assets/matrix.gif') # setting favicon
+        icon = tkinter.PhotoImage(file=icon_path) # setting favicon
         self.tk.call('wm', 'iconphoto', self._w, icon)  
 
         self.closed = False
@@ -266,9 +269,13 @@ class Engine(object):
 
         self.surface   = pygame.display.set_mode((x_res,y_res)) # initialise window for drawing
         pygame.display.set_caption(' Matrix Manipulation')
+        
+        # Set current directory
+        dirname   = os.path.dirname(__file__)
+        icon_path = os.path.join(dirname, r'assets/matrix.png')
 
         # setting favicon
-        icon = pygame.image.load(r'assets/matrix.png')
+        icon = pygame.image.load(icon_path)
         pygame.display.set_icon(icon)
 
         # matrix of the triangle which is going to be transformed
